@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import screenshot1 from "./assets/Screenshots/1.png";
+import screenshot2 from "./assets/Screenshots/2.png";
+import screenshot3 from "./assets/Screenshots/3.png";
+import screenshot4 from "./assets/Screenshots/4.png";
+import screenshot5 from "./assets/Screenshots/5.png";
 
 type Project = {
   number: string;
@@ -8,6 +13,7 @@ type Project = {
   stack: string[];
   repo: string;
   visual: string;
+  screenshot: string;
   accent: string;
   glyph: string;
   status: string;
@@ -18,38 +24,32 @@ const projects: Project[] = [
     number: "01", title: "Air Astana Virtual", eyebrow: "AVIATION · BRAND EXPERIENCE",
     description: "A polished digital home for a virtual airline community, built around the spirit of Eurasia and the details that make a brand feel real.",
     stack: ["React", "TypeScript", "Vite"], repo: "https://github.com/Gurnoor1-dev/air-astana-virtual-site",
-    visual: "airline", accent: "#e6fb68", glyph: "✳", status: "WEB EXPERIENCE"
+    visual: "airline", screenshot: screenshot1, accent: "#e6fb68", glyph: "✳", status: "WEB EXPERIENCE"
   },
   {
     number: "02", title: "Crew Center — KCVA", eyebrow: "AVIATION · OPERATIONS",
     description: "A connected crew workspace for pilot profiles, flight reports, logbooks, leaderboards, fleet management, and live-flight tracking.",
     stack: ["React", "Supabase", "Live data"], repo: "https://github.com/Gurnoor1-dev/crew-center-air-astana-virtual",
-    visual: "cockpit", accent: "#8cf4d1", glyph: "↗", status: "CREW PLATFORM"
+    visual: "cockpit", screenshot: screenshot2, accent: "#8cf4d1", glyph: "↗", status: "CREW PLATFORM"
   },
   {
     number: "03", title: "Australian Bite Hub", eyebrow: "COMMERCE · HOSPITALITY",
     description: "A restaurant ordering and operations experience designed to bring customer ordering and behind-the-scenes workflows together.",
     stack: ["TanStack Start", "React", "TypeScript"], repo: "https://github.com/Gurnoor1-dev/australian-bite",
-    visual: "bite", accent: "#ffb56b", glyph: "✳", status: "ORDERING EXPERIENCE"
+    visual: "bite", screenshot: screenshot3, accent: "#ffb56b", glyph: "✳", status: "ORDERING EXPERIENCE"
   },
   {
     number: "04", title: "BreatheRise", eyebrow: "WELLBEING · COACHING",
     description: "A refined digital experience for performance coaching, connecting people with specialist support through a calm, premium interface.",
     stack: ["React", "TanStack", "Supabase"], repo: "https://github.com/Gurnoor1-dev/connect-care",
-    visual: "breathe", accent: "#b5a4ff", glyph: "◌", status: "DIGITAL PRODUCT"
+    visual: "breathe", screenshot: screenshot4, accent: "#b5a4ff", glyph: "◌", status: "DIGITAL PRODUCT"
   },
   {
     number: "05", title: "ATC Mentorship Hub", eyebrow: "AVIATION · LEARNING",
     description: "A gateway for aspiring Infinite Flight air traffic controllers, with mentoring, exam preparation, and mock-practical learning paths.",
     stack: ["React", "TypeScript", "UI systems"], repo: "https://github.com/Gurnoor1-dev/atcmh-website",
-    visual: "atc", accent: "#79c7ff", glyph: "⌁", status: "COMMUNITY PLATFORM"
-  },
-  {
-    number: "06", title: "Gurnoor | IFATC Controller", eyebrow: "PERSONAL · AVIATION",
-    description: "A personal aviation profile documenting the controller journey, routines, milestones, and positions through a cockpit-inspired interface.",
-    stack: ["React", "TypeScript", "Motion"], repo: "https://github.com/Gurnoor1-dev/Gurnoor-IFATC",
-    visual: "radar", accent: "#a8f26e", glyph: "⌖", status: "PERSONAL PROJECT"
-  },
+    visual: "atc", screenshot: screenshot5, accent: "#79c7ff", glyph: "⌁", status: "COMMUNITY PLATFORM"
+  }
 ];
 
 const skills = ["React", "TypeScript", "Vite", "Supabase", "TanStack", "Responsive UI", "Product thinking", "Motion design"];
@@ -60,15 +60,10 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
 
 function ProjectVisual({ project }: { project: Project }) {
   return (
-    <div className={`project-visual visual-${project.visual}`} style={{ "--accent": project.accent } as React.CSSProperties}>
-      <div className="visual-top"><span className="visual-dot" /><span className="visual-dot" /><span className="visual-dot" /><span className="visual-label">{project.status}</span></div>
-      {project.visual === "airline" && <div className="airline-art"><span className="art-orbit orbit-one" /><span className="art-orbit orbit-two" /><div className="art-sun">✳</div><div className="art-wordmark">AIR ASTANA<span>VIRTUAL</span></div><div className="art-route">ALA <span>───────── ✈ ─────────</span> FRA</div></div>}
-      {project.visual === "cockpit" && <div className="cockpit-art"><div className="cockpit-ring"><div className="cockpit-cross" /><span className="cockpit-plane">✈</span></div><div className="cockpit-metrics"><div><small>FLIGHT STATUS</small><b>IN THE AIR <i /></b></div><div><small>CREW PORTAL</small><b>KCVA / 01</b></div></div><div className="cockpit-line" /></div>}
-      {project.visual === "bite" && <div className="bite-art"><div className="bite-sun" /><span className="bite-scribble">made with<br/>appetite.</span><div className="bite-circle"><span>AU</span><b>BITE</b><small>FRESH · FAST · GOOD</small></div><div className="bite-menu">MENU <span>↗</span><hr/>ORDER ONLINE <span>↗</span></div></div>}
-      {project.visual === "breathe" && <div className="breathe-art"><div className="breathe-halo halo-a" /><div className="breathe-halo halo-b" /><div className="breathe-core">breathe<span>rise.</span></div><p>MAKE SPACE<br/>FOR YOUR BEST</p><div className="breathe-bars"><i/><i/><i/><i/><i/><i/><i/><i/></div></div>}
-      {project.visual === "atc" && <div className="atc-art"><div className="atc-map-grid" /><div className="atc-radar"><span className="radar-sweep" /><i className="blip b1"/><i className="blip b2"/><i className="blip b3"/><i className="blip b4"/></div><div className="atc-title">ATC<span>MENTORSHIP HUB</span></div><div className="atc-bottom"><span>LEARN · PRACTISE · CONTROL</span><span>HDG 270°</span></div></div>}
-      {project.visual === "radar" && <div className="radar-art"><div className="radar-circle rc1"/><div className="radar-circle rc2"/><div className="radar-circle rc3"/><div className="radar-sweep" /><span className="radar-label rl1">IFATC</span><span className="radar-label rl2">GNR 04</span><span className="radar-label rl3">ACTIVE</span><div className="radar-center">G.</div></div>}
-      <div className="visual-index">{project.number} / 06</div>
+    <div className="project-visual screenshot-visual">
+      <img src={project.screenshot} alt={`${project.title} website screenshot`} loading="lazy" />
+      <span className="screenshot-caption">{project.status}</span>
+      <span className="visual-index">{project.number} / 05</span>
     </div>
   );
 }
@@ -116,7 +111,7 @@ function App() {
       <header className={`nav ${scrolled ? "nav-scrolled" : ""}`}>
         <a className="brand" href="#home" aria-label="Gurnoor home"><span className="brand-mark">G.</span><span>GURNOOR<span className="brand-reg">®</span></span></a>
         <nav className={menuOpen ? "nav-links nav-open" : "nav-links"} aria-label="Main navigation">
-          <a onClick={() => setMenuOpen(false)} href="#work">Selected work <span>06</span></a>
+          <a onClick={() => setMenuOpen(false)} href="#work">Selected work <span>05</span></a>
           <a onClick={() => setMenuOpen(false)} href="#about">About</a>
           <a onClick={() => setMenuOpen(false)} href="#contact">Contact</a>
         </nav>
@@ -155,7 +150,7 @@ function App() {
               </article>
             ))}
           </div>
-          <div className="work-end reveal"><span>THAT’S THE CURRENT SELECTION</span><span>MORE IDEAS IN THE WORKSHOP <b>↘</b></span></div>
+          <div className="work-end reveal"><span>FIVE PROJECTS. ONE CURIOSITY.</span><span>MORE IDEAS IN THE WORKSHOP <b>↘</b></span></div>
         </section>
 
         <section className="about-section" id="about">
